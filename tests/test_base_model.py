@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 """ Testing the Base Model as it
-    is meant to wor
-    """"
+    is meant to work"""
+from datetime import datetime
+import inspect
+import time
+import unittest
+from unittest import mock
+
 
 class TestBaseModel(unittest.TestCase):
     """Test the basemodel class"""
@@ -18,10 +23,10 @@ class TestBaseModel(unittest.TestCase):
             "name": str,
             "number": int
         }
-        for attr typ in attrs_types.items():
+        for attr, typ in attrs_types.items():
             with self.subTest(attr=attr, typ=typ):
                 self.assertIn(attr, inst.__dict__)
-                self.assertIs(type(attr, inst.__dict__[attr]),
+                self.assertIs(type(attr, inst.__dict__[attr]), typ)
         self.assertEqual(inst.name, "john")
         self.assertEqual(inst.number, 99)
 
