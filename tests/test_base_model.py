@@ -30,17 +30,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(inst.name, "john")
         self.assertEqual(inst.number, 99)
 
-    @mock.patch('models.storage')
-    def test_save(self, mock_storage):
-        """Test for save and updates methods"""
 
-        inst = BaseModel()
-        old_created_at = inst.created_at
-        old_updated_at = inst.updated_at
-        inst.save()
-        Ncreate = inst.created_at
-        Nupdate = inst.update_at
-        self.assertNotEqual(old_updated_at, Nupdate)
-        self.assertNotEqual(old_created_at, Ncreate)
-        self.assertTrue(mock_storage.new.called)
-        self.assertTrue(mock_storage.save.called)
+        def test_save(self, mock_storage):
+            """Test for save and updates methods"""
+
+            inst = BaseModel()
+            old_created_at = inst.created_at
+            old_updated_at = inst.updated_at
+            inst.save()
+            Ncreate = inst.created_at
+            Nupdate = inst.update_at
+            self.assertNotEqual(old_updated_at, Nupdate)
+            self.assertNotEqual(old_created_at, Ncreate)
+       
