@@ -8,6 +8,7 @@ import unittest
 from unittest import mock
 from models.base_model import BaseModel
 
+
 my_model = BaseModel()
 my_model.name = "My First Model"
 my_model.my_number = 89
@@ -40,7 +41,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(inst.name, "John")
 
 
-        def test_save(self, mock_storage):
+        def test_save(self):
             """Test for save and updates methods"""
 
             inst = BaseModel()
