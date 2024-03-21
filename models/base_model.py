@@ -4,6 +4,7 @@
 from os import getenv
 import uuid
 from datetime import datetime
+from models.engine.file_storage import FileStorage
 
 time ="%Y-%m-%dT%H:%M:%S.%f"
 
@@ -16,6 +17,7 @@ class BaseModel:
         """ Init of the base model """
         if kwargs is None or kwargs == "":
             self.id = str(uuid.uuid4())
+            storage.new(self)
             self.created_at = datetime.utcnow()
             self.updated_at = self.created_at
         else:
@@ -39,6 +41,8 @@ class BaseModel:
     
     def save(self):
         self.update_at = datetime.utcnow()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self, save_fs=None):
         """Returns dict with key/value pairs"""
